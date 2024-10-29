@@ -1,0 +1,33 @@
+require 'securerandom'\
+SecureRandom.hex(32)
+require 'securerandom'\
+SecureRandom.hex(16)
+require 'securerandom'\
+SecureRandom.hex(16).size
+puts SecureRandom.hex(16)
+quit
+require 'securerandom'\
+puts SecureRandom.hex(16)
+require 'securerandom'\
+puts SecureRandom.hex(16)
+require 'secretrandom'
+require 'randomsecret'
+require 'secretrandom'
+require 'securerandom'
+SecureRandom.hex(16)
+puts SecureRandom.hex(16)
+team1 = Character.where(team: 1)
+team1.first
+exit
+Character.destroy_all
+exit
+Character.red_team
+exit
+Character.red_team
+Character.red_team.any?
+Character.red_team.any.sample
+Character.red_team.sample
+Character.red_team
+Character.red_team.any?
+Character.red_team.sample
+Character.red_team.any?
