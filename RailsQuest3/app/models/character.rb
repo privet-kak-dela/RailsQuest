@@ -30,13 +30,9 @@ class Character < ApplicationRecord
     return unless Character.ultimate_ready_for?(team:)
 
     if team == 1
-      5.times do
-        Character.create(unit: 'knight')
-      end
+      5.times { Character.create(unit: 'knight') }
     elsif team == 2
-      [3, Character.team1.count].min.times do
-        Character.team1.sample.destroy
-      end
+      Character.team1.sample(3).each(&:destroy)
     end
   end
 

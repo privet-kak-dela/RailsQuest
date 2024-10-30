@@ -50,6 +50,6 @@
   <div class='controls_container'>
     <%= button_to 'Generate random game', generate_game_path,
                   method: :post,style: 'margin-top: 20px;',
-                  class: @is_generate_allow ? 'button--normal' : 'button--dimmed'%>
+                  class: new_game? ? 'button--normal' : 'button--dimmed'%>
   </div>
 </div>
