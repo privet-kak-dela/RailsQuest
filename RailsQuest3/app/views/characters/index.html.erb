@@ -21,34 +21,34 @@
 
 <div class='controls'>
   <div class='controls_container'>
-    <%= button_to 'Add Knight', new_character_path, params:{character: {team: 1, unit: 'knight'}}, method: :post %>
+    <%= button_to 'Add Knight', characters_path, params:{character: {team: 1, unit: 'knight'}}, method: :post %>
   </div>
   <div class='controls_container'>
-    <%= button_to 'Add Mage', new_character_path, params:{character: {team: 1, unit: 'mage'}}, method: :post %>
-  </div>
-
-  <div class='controls_container'>
-    <%= button_to 'Ulta1', ultimate_path, params: {team: 1}, method: :post, class: ultimate_ready_for?(team: 1) ? 'button--normal' : 'button--dimmed'%>
+    <%= button_to 'Add Mage', characters_path, params:{character: {team: 1, unit: 'mage'}}, method: :post %>
   </div>
 
   <div class='controls_container'>
-    <%= button_to 'Add Medusa', new_character_path, params:{character: {team: 2, unit: 'medusa'}}, method: :post %>
+    <%= button_to 'Ulta1', ultimate_characters_path, params: {team: 1}, method: :post, class: ultimate_ready_for?(team: 1) ? 'button--normal' : 'button--dimmed'%>
+  </div>
+
+  <div class='controls_container'>
+    <%= button_to 'Add Medusa', characters_path, params:{character: {team: 2, unit: 'medusa'}}, method: :post %>
   </div>
   <div class='controls_container'>
-    <%= button_to 'Add Jinn', new_character_path, params:{character: {team: 2, unit: 'jinn'}}, method: :post %>
+    <%= button_to 'Add Jinn', characters_path, params:{character: {team: 2, unit: 'jinn'}}, method: :post %>
   </div>
   <div class='controls_container'>
-    <%= button_to 'Ulta2', ultimate_path, params: {team: 2}, method: :post, class: ultimate_ready_for?(team: 2) ? 'button--normal' : 'button--dimmed'%>
+    <%= button_to 'Ulta2', ultimate_characters_path, params: {team: 2}, method: :post, class: ultimate_ready_for?(team: 2) ? 'button--normal' : 'button--dimmed'%>
   </div>
 </div>
 
 <div class='controls'>
   <div class='controls_container'>
-    <%= button_to 'Restart', restart_path, method: :post,style: 'margin-top: 20px;' %>
+    <%= button_to 'Restart', restart_games_path, method: :post,style: 'margin-top: 20px;' %>
   </div>
 
   <div class='controls_container'>
-    <%= button_to 'Generate random game', generate_game_path,
+    <%= button_to 'Generate random game', generate_games_path,
                   method: :post,style: 'margin-top: 20px;',
                   class: new_game? ? 'button--normal' : 'button--dimmed'%>
   </div>
