@@ -4,14 +4,14 @@
 
 <div class='battlefield'>
   <div class='team_container left'>
-    <%- @team1.each do |character| %>
+    <%- Character.team1.each do |character| %>
       <div>
         <%= image_tag character.unit%>
       </div>
     <% end %>
   </div>
   <div class='team_container right'>
-    <%- @team2.each do |character| %>
+    <%- Character.team2.each do |character| %>
       <div>
         <%= image_tag character.unit%>
       </div>
@@ -28,7 +28,7 @@
   </div>
 
   <div class='controls_container'>
-    <%= button_to 'Ulta1', ulta1_activate_path, method: :post, class: @is_ulta1_allow ? 'button--normal' : 'button--dimmed'%>
+    <%= button_to 'Ulta1', ulta1_activate_path, method: :post, class: ultimate_ready_for?(team: 1) ? 'button--normal' : 'button--dimmed'%>
   </div>
 
   <div class='controls_container'>
@@ -38,7 +38,7 @@
     <%= button_to 'Add Jinn', new_character_path, params:{character: {team: 2, unit: 'jinn'}}, method: :post %>
   </div>
   <div class='controls_container'>
-    <%= button_to 'Ulta2', ulta2_activate_path, method: :post, class: @is_ulta2_allow ? 'button--normal' : 'button--dimmed'%>
+    <%= button_to 'Ulta2', ulta2_activate_path, method: :post, class: ultimate_ready_for?(team: 2) ? 'button--normal' : 'button--dimmed'%>
   </div>
 </div>
 

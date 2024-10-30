@@ -18,6 +18,24 @@ class Character < ApplicationRecord
   validates :unit, acceptance: { accept: ACCEPTABLE_UNITS }
   validate :correct_team?
 
+  scope :team1, -> { where(team: 1) }
+  scope :team2, -> { where(team: 2) }
+
+  scope :knights, -> { team1.where(unit: 'knight') }
+  scope :mages, -> { team1.where(unit: 'mage') }
+  scope :jinns, -> { team2.where(unit: 'jinn') }
+  scope :medusas, -> { team2.where(unit: 'medusa') }
+
+  def self.ultimate_ready_for?(team:)
+    if team == 1
+      Character.knights.count >= 2 && Character.mages.count >= 2
+    elsif team == 2
+      Character.jinns.count >= 2 && Character.medusas.count >= 1
+    else
+      false
+    end
+  end
+
   def self.create_sample!
     unit, team = Character::UNITS_TO_TEAMS.to_a.sample
     Character.create!(team:, unit:)
