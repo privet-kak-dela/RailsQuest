@@ -22,8 +22,6 @@ class HomeController < ApplicationController
     Character.where(team: 2, unit: :jinn).count >= 2 && Character.where(team: 2, unit: :medusa).count >= 1
   end
 
-
-
   #создает 5 рыцарей, если в команде 1 есть хотя бы два мага и два рыцаря
   def ulta1_activate
     5.times do
@@ -51,8 +49,8 @@ class HomeController < ApplicationController
   # -просто, число прикольное)
   def generate_game
     4.times do
-      random_unit = Character::CHARACTERS.keys.sample #берем рандомного челика
-      random_team = Character::CHARACTERS[random_unit] #смотрим, в какой он команде
+      random_unit = Character::UNITS_TO_TEAMS.keys.sample #берем рандомного челика
+      random_team = Character::UNITS_TO_TEAMS[random_unit] #смотрим, в какой он команде
       Character.create(team: random_team,unit: random_unit)
     end
     redirect_to '/'
