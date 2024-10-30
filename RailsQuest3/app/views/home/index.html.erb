@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+  <div class="notice"><%= flash[:alert] %></div>
+<% end %>
+
 <div class='battlefield'>
   <div class='team_container left'>
     <%- @team1.each do |character| %>

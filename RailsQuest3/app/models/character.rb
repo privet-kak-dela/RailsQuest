@@ -6,7 +6,7 @@ class Character < ApplicationRecord
     jinn: 2
   }.freeze
 
-  ACCEPTABLE_UNITS = %w[mage knight medusa jihn].freeze
+  ACCEPTABLE_UNITS = UNITS_TO_TEAMS.keys.map(&:to_s).freeze
 
   # позволяет задать команду автоматически, если она не указана, еще до валидации.
   before_validation :assign_team
@@ -17,6 +17,11 @@ class Character < ApplicationRecord
   #проверяет, что атрибут unit имеет одно из значений: mage, knight, medusa, jinn
   validates :unit, acceptance: { accept: ACCEPTABLE_UNITS }
   validate :correct_team?
+
+  def self.create_sample!
+    unit, team = Character::UNITS_TO_TEAMS.to_a.sample
+    Character.create!(team:, unit:)
+  end
 
   private
   #проверяет, соответствует ли team правильной команде для данного unit

@@ -9,7 +9,10 @@ class HomeController < ApplicationController
 
   #создает запись в бд с переданными параметрами(получает и разрешает параметры team и uni)
   def new_сharacter
-    Character.create(params.require(:character).permit(:team, :unit))
+    character = Character.new(params.require(:character).permit(:team, :unit))
+    unless character.save
+      flash[:alert] = character.errors.full_messages
+    end
     redirect_to '/'
   end
 
@@ -49,9 +52,7 @@ class HomeController < ApplicationController
   # -просто, число прикольное)
   def generate_game
     4.times do
-      random_unit = Character::UNITS_TO_TEAMS.keys.sample #берем рандомного челика
-      random_team = Character::UNITS_TO_TEAMS[random_unit] #смотрим, в какой он команде
-      Character.create(team: random_team,unit: random_unit)
+      Character.create_sample!
     end
     redirect_to '/'
   end
