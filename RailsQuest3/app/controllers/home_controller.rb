@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   #создает запись в бд с переданными параметрами(получает и разрешает параметры team и uni)
   def new_сharacter
-    character = Character.new(params.require(:character).permit(:team, :unit))
+    character = Character.new(character_params)
     unless character.save
       flash[:alert] = character.errors.full_messages
     end
@@ -13,18 +13,8 @@ class HomeController < ApplicationController
   end
 
   #создает 5 рыцарей, если в команде 1 есть хотя бы два мага и два рыцаря
-  def ulta1_activate
-    5.times do
-      Character.create({ team: 1, unit: 'knight' })
-    end
-    redirect_to '/'
-  end
-
-  #удаляет 3 рандомных челиков, если в команде два есть 2 джинна и 1 медуза
-  def ulta2_activate
-    [3, Character.where(team: 1).count].min.times do |_|
-      Character.where(team: 1).sample.destroy
-    end
+  def ultimate
+    Character.ultimate_for(team: params.require(:team).to_i)
     redirect_to '/'
   end
 
@@ -42,5 +32,11 @@ class HomeController < ApplicationController
       Character.create_sample!
     end
     redirect_to '/'
+  end
+
+  private
+
+  def character_params
+    params.require(:character).permit(:team, :unit)
   end
 end

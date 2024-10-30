@@ -26,6 +26,20 @@ class Character < ApplicationRecord
   scope :jinns, -> { team2.where(unit: 'jinn') }
   scope :medusas, -> { team2.where(unit: 'medusa') }
 
+  def self.ultimate_for(team:)
+    return unless Character.ultimate_ready_for?(team:)
+
+    if team == 1
+      5.times do
+        Character.create(unit: 'knight')
+      end
+    elsif team == 2
+      [3, Character.team1.count].min.times do
+        Character.team1.sample.destroy
+      end
+    end
+  end
+
   def self.ultimate_ready_for?(team:)
     if team == 1
       Character.knights.count >= 2 && Character.mages.count >= 2
